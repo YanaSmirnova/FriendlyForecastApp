@@ -1,7 +1,10 @@
 package com.teamtreehouse.friendlyforecast.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.teamtreehouse.friendlyforecast.services.Forecast;
 
 import java.sql.SQLException;
 
@@ -24,10 +27,18 @@ public class ForecastDataSource {
     }
 
     // close
+    public void close() {
+        mDatabase.close();
+    }
 
-    // create
+    // select
 
     // insert
+    public void insertForecast(Forecast forecast) {
+        ContentValues values = new ContentValues();
+        values.put(mForecastHelper.COLUMN_TEMPERATURE, 75.0);
+        mDatabase.insert(mForecastHelper.TABLE_TEMPERATURES, null, values);
+    }
 
     // update
 
