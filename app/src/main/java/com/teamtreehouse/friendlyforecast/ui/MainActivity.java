@@ -15,6 +15,8 @@ import com.teamtreehouse.friendlyforecast.db.ForecastDataSource;
 import com.teamtreehouse.friendlyforecast.services.Forecast;
 import com.teamtreehouse.friendlyforecast.services.ForecastService;
 
+import java.sql.SQLException;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -70,17 +72,17 @@ public class MainActivity extends Activity {
         mUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDataSource.updateTemperature(100);
+               // mDataSource.updateTemperature(100);
             }
         });
 
         mDeleteButton = (Button)findViewById(R.id.deleteButton);
-        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+        /*mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDataSource.deleteAll();
             }
-        });
+        });*/
 
         TextView photoCredit = (TextView)findViewById(R.id.textView);
         photoCredit.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +97,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        mDataSource.open();
+        try {
+            mDataSource.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -118,7 +124,7 @@ public class MainActivity extends Activity {
                 Log.v(TAG, "Temp " + i + ": " + mTemperatures[i]);
             }
 
-            mDataSource.insertForecast(forecast);
+            //mDataSource.insertForecast(forecast);
             updateHighAndLow();
             enableOtherButtons();
         }

@@ -15,6 +15,7 @@ import com.teamtreehouse.friendlyforecast.db.ForecastHelper;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -37,10 +38,14 @@ public class ViewForecastActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mDataSource.open();
+        try {
+            mDataSource.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        Cursor cursor = mDataSource.selectAllTemperatures();
-        updateList(cursor);
+        //Cursor cursor = mDataSource.selectAllTemperatures();
+        //updateList(cursor);
     }
 
     @Override
@@ -69,8 +74,8 @@ public class ViewForecastActivity extends ListActivity {
     }
 
     protected void filterTemperatures(String minTemp) {
-        Cursor cursor = mDataSource.selectTempsGreaterThan(minTemp);
-        updateList(cursor);
+        //Cursor cursor = mDataSource.selectTempsGreaterThan(minTemp);
+        //updateList(cursor);
     }
 
     protected void configureActionBar() {
