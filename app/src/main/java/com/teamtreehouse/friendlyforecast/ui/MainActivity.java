@@ -77,12 +77,12 @@ public class MainActivity extends Activity {
         });
 
         mDeleteButton = (Button)findViewById(R.id.deleteButton);
-        /*mDeleteButton.setOnClickListener(new View.OnClickListener() {
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDataSource.deleteAll();
             }
-        });*/
+        });
 
         TextView photoCredit = (TextView)findViewById(R.id.textView);
         photoCredit.setOnClickListener(new View.OnClickListener() {

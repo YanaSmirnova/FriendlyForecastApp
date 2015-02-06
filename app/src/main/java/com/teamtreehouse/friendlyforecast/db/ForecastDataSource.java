@@ -4,15 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
-
 import com.teamtreehouse.friendlyforecast.services.Forecast;
-import com.teamtreehouse.friendlyforecast.ui.ViewForecastActivity;
-
 import java.sql.SQLException;
-
-import static android.widget.Toast.LENGTH_LONG;
-import static android.widget.Toast.makeText;
 
 /**
  * Class to act as a an interface on top of the ForecastHelper class and to do all of our operations.
@@ -100,4 +93,11 @@ public class ForecastDataSource {
     }
 
     // delete
+    public void deleteAll() {
+        mDatabase.delete(
+                ForecastHelper.TABLE_TEMPERATURES, //
+                null, // where clause
+                null// where params
+        );
+    }
 }
