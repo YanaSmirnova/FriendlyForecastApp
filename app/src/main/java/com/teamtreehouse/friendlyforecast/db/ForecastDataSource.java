@@ -35,9 +35,20 @@ public class ForecastDataSource {
 
     // insert
     public void insertForecast(Forecast forecast) {
-        ContentValues values = new ContentValues();
-        values.put(mForecastHelper.COLUMN_TEMPERATURE, 75.0);
-        mDatabase.insert(mForecastHelper.TABLE_TEMPERATURES, null, values);
+        mDatabase.beginTransaction();
+
+        try {
+            for (Forecast.HourData hour: forecast.hourly.data) {
+                ContentValues values = new ContentValues();
+                values.put(mForecastHelper.COLUMN_TEMPERATURE, hour.temperature);
+                mDatabase.insert(mForecastHelper.TABLE_TEMPERATURES, null, values);
+            }
+            mDatabase.setTransactionSuccessful();
+        }
+        finally {
+            mDatabase.endTransaction();
+        }
+
     }
 
     // update

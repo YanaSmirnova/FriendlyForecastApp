@@ -124,7 +124,7 @@ public class MainActivity extends Activity {
                 Log.v(TAG, "Temp " + i + ": " + mTemperatures[i]);
             }
 
-            //mDataSource.insertForecast(forecast);
+            mDataSource.insertForecast(forecast);
             updateHighAndLow();
             enableOtherButtons();
         }
