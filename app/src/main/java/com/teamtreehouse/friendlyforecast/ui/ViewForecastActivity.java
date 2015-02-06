@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.teamtreehouse.friendlyforecast.R;
 import com.teamtreehouse.friendlyforecast.db.ForecastDataSource;
@@ -86,7 +87,13 @@ public class ViewForecastActivity extends ListActivity {
         minTempField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                filterTemperatures(minTempField.getText().toString());
+                String minTemp = minTempField.getText().toString();
+                // show all if nothing chosen (empty field)
+                if (minTemp.equals("") | minTemp == null) {
+                    minTemp = "0";
+                }
+                filterTemperatures(minTemp);
+                //Toast.makeText(ViewForecastActivity.this, minTemp, Toast.LENGTH_LONG).show();
                 return false;
             }
         });
