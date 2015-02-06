@@ -65,6 +65,21 @@ public class ForecastDataSource {
         return cursor;
     }
 
+    public Cursor selectTempsGreaterThan(String minTemp) {
+        String whereClause = ForecastHelper.COLUMN_TEMPERATURE + " > ?";
+        Cursor cursor = mDatabase.query(
+                ForecastHelper.TABLE_TEMPERATURES, // table
+                new String[] {ForecastHelper.COLUMN_TEMPERATURE}, //column names
+                whereClause, // where clause
+                new String[] { minTemp }, // where params
+                null, // group by
+                null, // having
+                null //ordered by
+        );
+
+        return cursor;
+    }
+
     // update
 
     // delete

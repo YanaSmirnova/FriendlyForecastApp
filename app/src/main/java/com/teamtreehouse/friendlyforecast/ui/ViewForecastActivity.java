@@ -74,8 +74,8 @@ public class ViewForecastActivity extends ListActivity {
     }
 
     protected void filterTemperatures(String minTemp) {
-        //Cursor cursor = mDataSource.selectTempsGreaterThan(minTemp);
-        //updateList(cursor);
+        Cursor cursor = mDataSource.selectTempsGreaterThan(minTemp);
+        updateList(cursor);
     }
 
     protected void configureActionBar() {
