@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
         mUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // mDataSource.updateTemperature(100);
+               mDataSource.updateTemperature(100);
             }
         });
 
