@@ -2,6 +2,7 @@ package com.teamtreehouse.friendlyforecast.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.teamtreehouse.friendlyforecast.services.Forecast;
@@ -31,8 +32,6 @@ public class ForecastDataSource {
         mDatabase.close();
     }
 
-    // select
-
     // insert
     public void insertForecast(Forecast forecast) {
         mDatabase.beginTransaction();
@@ -49,6 +48,21 @@ public class ForecastDataSource {
             mDatabase.endTransaction();
         }
 
+    }
+
+    // select
+    public Cursor selectAllTemperatures() {
+        Cursor cursor = mDatabase.query(
+                ForecastHelper.TABLE_TEMPERATURES, // table
+                new String[] {ForecastHelper.COLUMN_TEMPERATURE}, //column names
+                null, // where clause
+                null, // where params
+                null, // group by
+                null, // having
+                null //ordered by
+        );
+
+        return cursor;
     }
 
     // update

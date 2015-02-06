@@ -44,8 +44,8 @@ public class ViewForecastActivity extends ListActivity {
             e.printStackTrace();
         }
 
-        //Cursor cursor = mDataSource.selectAllTemperatures();
-        //updateList(cursor);
+        Cursor cursor = mDataSource.selectAllTemperatures();
+        updateList(cursor);
     }
 
     @Override
